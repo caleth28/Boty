@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: bot-envato
+    runtime: python
+    envVars:
+      - key: ENVATO_EMAIL
+        value: "diseno@peusac.com.pe"
+      - key: ENVATO_PASSWORD
+        value: "Motivate28@"
+    buildCommand: |
+      chmod +x install_chrome.sh
+      ./install_chrome.sh
+      pip install -r requirements.txt
+    startCommand: python bot_main.py
