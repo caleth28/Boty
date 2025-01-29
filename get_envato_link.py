@@ -25,11 +25,17 @@ def get_envato_link(item_url: str) -> str:
 
     # Configurar opciones de Chrome en modo headless
     chrome_options = Options()
-    chrome_options.add_argument("--headless=new")  # **Ejecutar en modo sin interfaz gráfica**
-    chrome_options.add_argument("--disable-gpu")  # **Necesario en algunos entornos**
-    chrome_options.add_argument("--no-sandbox")  # **Evitar problemas de permisos en servidores**
-    chrome_options.add_argument("--disable-dev-shm-usage")  # **Evita problemas de memoria**
-    chrome_options.add_argument("--window-size=1920,1080")  # **Simula pantalla completa**
+    chrome_options.add_argument("--headless=new")  # Modo headless
+    chrome_options.add_argument("--disable-gpu")  # Desactivar GPU
+    chrome_options.add_argument("--no-sandbox")  # Desactivar sandbox
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Evitar problemas de memoria
+    chrome_options.add_argument("--window-size=1920,1080")  # Simular pantalla completa
+    chrome_options.add_experimental_option("prefs", {
+    "download.default_directory": download_dir,
+    "download.prompt_for_download": False,
+    "download.directory_upgrade": True,
+    "safebrowsing.enabled": True
+})
     
     # Preferencias de descarga
     chrome_options.add_experimental_option("prefs", {
